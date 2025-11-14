@@ -8,6 +8,9 @@ int main(void) {
 
     while (1) {
 
+
+        const char *SEPARATOR = " ";
+
         // prompt
         printf("myshell> ");
         fflush(stdout);
@@ -23,7 +26,23 @@ int main(void) {
             printf("Goodbye\n");
             break;
         }
+        char *args[128];
+        int argc = 0;
+        char *strToken = strtok(input, SEPARATOR);
 
-        printf("You just entered %s\n", input);
+        while (strToken != NULL)
+        {
+            args[argc] = strToken;
+            argc++;
+            //printf("%s successfully copied\n", args[argc]);
+            strToken = strtok( NULL, SEPARATOR);
+        }
+
+        args[argc] = NULL;
+
+        printf("Command: %s\n", args[0]);
+        for (int i = 0; args[i] != NULL; i++) {
+            printf(" args[%d] = %s\n", i, args[i]);
+        }
     }
 }
