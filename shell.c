@@ -72,6 +72,7 @@ int main(void) {
         else if (pid == 0){
             execvp(args[0], args);
             fprintf(stderr, "%s: command not found\n", args[0]);
+            exit(127);
         }
         else {
             wait(NULL);
